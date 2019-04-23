@@ -1,3 +1,12 @@
+.background{
+  padding:20px 20px 20px 20px;
+}
+
 .Navbar{
   background-color: gray;
+}
+
+.cityBase{
+  color:#f1f2f6;
+  font-weight: bold;
 }

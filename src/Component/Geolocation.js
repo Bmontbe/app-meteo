@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import MeteoCity from './MeteoCity';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import moment from 'moment';
+import 'moment/locale/fr';
+import { Button } from 'semantic-ui-react';
 import './Geolocation.css';
+
+moment.locale('fr');
 
 class Geolocation extends Component {
   constructor(props) {
@@ -57,18 +61,23 @@ class Geolocation extends Component {
       })
   }
 
+  getSearch = () => {
+
+  }
+
   render() {
     return (
+      <div className='background'>
       <div>
-        <Navbar className="Navbar">
-          <NavbarBrand className="mr-auto">Ville : {this.state.city}, {this.state.country}</NavbarBrand>
-          <NavItem><button onClick={() => this.getMeteo()}>Météo à jour</button></NavItem>
-        </Navbar>
+        <p className="cityBase">{this.state.city}, {this.state.country}</p>
+        <Button secondary className="button" onClick={() => this.getMeteo()}>Me géolocaliser</Button>
+      </div>
+      <br/>
       <div className="mb-4">
         <div className="row justify-content-center">
           {this.state.temperatures ? this.state.temperatures.map((weather) => (
             <MeteoCity
-              date={weather.Date}
+              date={moment(weather.Date).format("dddd Do MMMM YYYY")}
               icon={`https://vortex.accuweather.com/adc2010/images/slate/icons/${weather.Day.Icon}.svg`}
               shortPhrase={weather.Day.ShortPhrase}
               tempMax={weather.Temperature.Maximum.Value}
@@ -78,7 +87,7 @@ class Geolocation extends Component {
           )) : ""}
         </div>
       </div>
-      </div>
+    </div>
     );
   }
 }
