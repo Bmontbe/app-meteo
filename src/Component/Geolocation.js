@@ -40,8 +40,8 @@ class Geolocation extends Component {
 
 
   getMeteo = () => {
-    const apikey = "lqc5YsaqTc9SMsbXcIAojsUMh8yMDKwB"
-    fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%20%09${apikey}%20&q=${this.state.latitude}%2C${this.state.longitude}&language=fr&details=true&toplevel=true`)
+    const apikey = "l2RloZd7G5p402cyWJDpPDPopPURlGtpM"
+    fetch(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=%20%09${apikey}%20&q=${this.state.latitude}%2C${this.state.longitude}&language=fr&details=true&toplevel=true`)
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -49,7 +49,7 @@ class Geolocation extends Component {
           country: data.Country.LocalizedName,
           key: data.Key,
         });
-        fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${this.state.key}?apikey=${apikey}&language=fr&details=true&metric=true`)
+        fetch(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${this.state.key}?apikey=${apikey}&language=fr&details=true&metric=true`)
           .then(response => response.json())
           .then(data => {
             this.setState({
